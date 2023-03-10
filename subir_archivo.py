@@ -16,6 +16,7 @@ def lambda_handler(event, context):
         dato=fila[1]
         fecha=str(fecha)
         s=s+fecha+","+dato+"\n"
+        #FechaDescarga, Barrio, Valor, NumHabitaciones, NumBanos, mts2
 
 client = boto3.client("s3")
-client.put_object(Body=s,Bucket="finaldolar",Key="dolar_timestamp.csv")
+client.put_object(Body=s,Bucket="finaldolar",Key="s3://casas-final-xxx/yyyy-mm-dd.csv")

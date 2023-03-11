@@ -7,7 +7,7 @@ client = boto3.client('s3')
 
 def subir_arhivo():
     s3 = boto3.resource('s3')
-    bucket = s3.Bucket('parcial-bd-011')
+    bucket = s3.Bucket('descargararchivomitula')
     obj = bucket.Object(f"{datetime.datetime.now().strftime('%Y-%m-%d')}.html")
     body = obj.get()['Body'].read()
     soup = BeautifulSoup(body, 'html.parser')
@@ -31,4 +31,4 @@ def subir_arhivo():
         else:
             s = s + "\n"
     client = boto3.client('s3')
-    client.put_object(Body=s, Bucket='parcial-bd-final-011', Key=f"{datetime.datetime.now().strftime('%Y-%m-%d')}.csv")
+    client.put_object(Body=s, Bucket='descargararchivomitulafinal', Key=f"{datetime.datetime.now().strftime('%Y-%m-%d')}.csv")

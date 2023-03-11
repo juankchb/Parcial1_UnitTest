@@ -25,7 +25,7 @@
         "apigateway_enabled": false,
         "aws_region": "us-east-1",
         "profile_name": "default",
-        "project_name": "parcial",
+        "project_name": "Parcial1",
         "runtime": "python3.8",
         "s3_bucket": "descargararchivomitulafinal",
         

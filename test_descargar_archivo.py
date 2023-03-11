@@ -3,7 +3,7 @@ import requests
 import datetime
 
 client = boto3.client('s3')
-BUCKET_NAME = 'parcial-bd-011'
+BUCKET_NAME = 'descargararchivomitula'
 
 
 def test_descargar_html():

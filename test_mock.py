@@ -1,21 +1,13 @@
-from unittest import TestCase
 from unittest.mock import patch, Mock
+from descargar_archivo import descargar_html
 
 
-class TestBlog(TestCase):
-    @patch('main.Blog')
-    def test_blog_posts(self, MockBlog):
-        blog = MockBlog()
-
-        blog.posts.return_value = [
-            {
-                'userId': 1,
-                'id': 1,
-                'title': 'Test Title',
-                'body': 'Far out in the uncharted backwaters of the unfashionable  end  of the  western  spiral  arm  of  the Galaxy\ lies a small unregarded yellow sun.'
-            }
-        ]
-        
-        response = blog.posts()
-        self.assertIsNotNone(response)
-        self.assertIsInstance(response[0], dict)
+@patch('boto3.client')
+@patch('requests.get')
+def test_descargar_html_mock(mock_get, mock_client):
+    mock_response = Mock()
+    mock_response.text = '<html><body>Test HTML</body></html>'
+    mock_response.content = b'Test HTML'
+    mock_get.return_value = mock_response
+    mock_client.return_value = Mock()
+    descargar_html()

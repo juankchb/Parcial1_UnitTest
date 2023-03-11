@@ -6,8 +6,9 @@ client = boto3.client('s3')
 BUCKET_NAME = 'parcial-bd-011'
 
 
-def descargar_html():
+def test_descargar_html():
     url = 'https://casas.mitula.com.co/searchRE/nivel2-Bogot%C3%A1/nivel1-Cundinamarca/op-1/tipo-Casa/q-Bogot%C3%A1'
     response = requests.get(url)
     html_file = "{}.html".format(datetime.datetime.now().strftime('%Y-%m-%d'))
     client.put_object(Bucket=BUCKET_NAME, Key=html_file, Body=response.content)
+    assert client.list_objects(Bucket=BUCKET_NAME)['Contents'][0]['Key'] == html_file
